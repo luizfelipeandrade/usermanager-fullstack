@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UserManager Pro | Full-Stack CRUD</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container topbar-content">
+        <div class="brand">
+          <span class="logo-dot"></span>
+          <h1>UserManager <span class="badge">Spring Boot + Supabase</span></h1>
+        </div>
+        <div class="controls">
+          <span
+            id="api-status"
+            class="status-pill status-checking"
+            data-i18n="statusChecking"
+            >Conectando API...</span
+          >
+          <button id="lang-toggle" class="btn-outline" type="button">EN</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="container main-grid">
+      <!-- Formulário de Cadastro / Edição -->
+      <section class="card form-section">
+        <div class="card-header">
+          <h2 id="form-title" data-i18n="formTitleCreate">Novo Usuário</h2>
+          <button
+            id="btn-cancel-edit"
+            class="btn-text hidden"
+            type="button"
+            data-i18n="btnCancel"
+          >
+            Cancelar edição
+          </button>
+        </div>
+
+        <form id="user-form">
+          <input type="hidden" id="user-id" />
+
+          <div class="form-group-title" data-i18n="secPersonal">
+            Dados Pessoais
+          </div>
+          <div class="grid-2">
+            <div class="field">
+              <label for="nome" data-i18n="lblName">Nome completo *</label>
+              <input
+                type="text"
+                id="nome"
+                maxlength="100"
+                required
+                placeholder="Ex: Luiz Felipe Andrade"
+              />
+            </div>
+            <div class="field">
+              <label for="profissao" data-i18n="lblRole">Profissão *</label>
+              <input
+                type="text"
+                id="profissao"
+                maxlength="100"
+                required
+                placeholder="Ex: Software Developer"
+              />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="email" data-i18n="lblEmail">E-mail *</label>
+            <input
+              type="email"
+              id="email"
+              maxlength="100"
+              required
+              placeholder="felipe@exemplo.com"
+            />
+          </div>
+
+          <div class="form-group-title" data-i18n="secContact">Contato</div>
+          <div class="grid-phone">
+            <div class="field">
+              <label for="ddd">DDD *</label>
+              <input
+                type="text"
+                id="ddd"
+                maxlength="4"
+                required
+                placeholder="(21)"
+              />
+            </div>
+            <div class="field">
+              <label for="telefone" data-i18n="lblPhone">Telefone *</label>
+              <input
+                type="text"
+                id="telefone"
+                maxlength="10"
+                required
+                placeholder="99999-8888"
+              />
+            </div>
+          </div>
+
+          <div class="form-group-title" data-i18n="secAddress">Endereço</div>
+          <div class="grid-address-top">
+            <div class="field">
+              <label for="cep">CEP *</label>
+              <input
+                type="text"
+                id="cep"
+                maxlength="9"
+                required
+                placeholder="21000-000"
+              />
+            </div>
+            <div class="field">
+              <label for="rua" data-i18n="lblStreet">Rua *</label>
+              <input
+                type="text"
+                id="rua"
+                maxlength="255"
+                required
+                placeholder="Rua das Flores"
+              />
+            </div>
+            <div class="field">
+              <label for="numero" data-i18n="lblNumber">Número *</label>
+              <input type="number" id="numero" required placeholder="120" />
+            </div>
+          </div>
+
+          <div class="grid-address-bottom">
+            <div class="field">
+              <label for="complemento" data-i18n="lblComplement"
+                >Complemento</label
+              >
+              <input
+                type="text"
+                id="complemento"
+                maxlength="10"
+                placeholder="Apto 201"
+              />
+            </div>
+            <div class="field">
+              <label for="cidade" data-i18n="lblCity">Cidade *</label>
+              <input
+                type="text"
+                id="cidade"
+                maxlength="150"
+                required
+                placeholder="Rio de Janeiro"
+              />
+            </div>
+            <div class="field">
+              <label for="estado" data-i18n="lblState">UF *</label>
+              <input
+                type="text"
+                id="estado"
+                maxlength="2"
+                required
+                placeholder="RJ"
+              />
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            id="btn-submit"
+            class="btn-primary"
+            data-i18n="btnSave"
+          >
+            Salvar Cadastro
+          </button>
+        </form>
+      </section>
+
+      <!-- Listagem de Usuários -->
+      <section class="list-section">
+        <div class="list-header">
+          <div>
+            <h2 data-i18n="listTitle">Usuários Cadastrados</h2>
+            <p class="subtitle" id="user-count">0 registros</p>
+          </div>
+          <input
+            type="search"
+            id="search-input"
+            class="search-box"
+            placeholder="Buscar por nome, profissão ou cidade..."
+          />
+        </div>
+
+        <div id="feedback-banner" class="banner hidden"></div>
+        <div id="users-container" class="users-grid"></div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
