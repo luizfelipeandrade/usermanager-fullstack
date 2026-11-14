@@ -1,7 +1,6 @@
-
 const API_URL = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
   ? "http://localhost:8080/usuario"
-  : "https://usermanager-fullstack.onrender.com";
+  : "https://usermanager-fullstack.onrender.com/usuario";
 
 let usersCache = [];
 let currentLang = localStorage.getItem("lang") || "pt";
